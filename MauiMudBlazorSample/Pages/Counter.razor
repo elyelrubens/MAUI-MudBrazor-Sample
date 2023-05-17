@@ -1,0 +1,33 @@
+﻿@page "/counter"
+@layout MainLayout
+
+<MudContainer MaxWidth="MaxWidth.Small">
+    <MudText Typo="Typo.h4"
+             Align="Align.Center">
+        COUNTER
+    </MudText>
+
+    <MudGrid>
+
+        <MudItem xs="12" sm="12" md="12">
+            <MudText>Current count: @currentCount</MudText>
+            <MudButton 
+                Variant="Variant.Filled" 
+                Color="Color.Primary" 
+                @onclick="IncrementCount">
+                Click Me
+            </MudButton>
+        </MudItem>
+
+    </MudGrid>
+
+</MudContainer>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
