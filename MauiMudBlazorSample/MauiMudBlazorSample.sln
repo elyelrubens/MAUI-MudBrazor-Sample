@@ -4,6 +4,8 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiMudBlazorSample", "MauiMudBlazorSample.csproj", "{983CE500-38ED-4DEE-9D63-FA93486E093E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MudBlazor", "..\..\github\MudBlazor\src\MudBlazor\MudBlazor.csproj", "{0703D9C1-D55E-4FE3-A9C1-0AA6B8029798}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,11 +18,16 @@ Global
 		{983CE500-38ED-4DEE-9D63-FA93486E093E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{983CE500-38ED-4DEE-9D63-FA93486E093E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{983CE500-38ED-4DEE-9D63-FA93486E093E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0703D9C1-D55E-4FE3-A9C1-0AA6B8029798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0703D9C1-D55E-4FE3-A9C1-0AA6B8029798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0703D9C1-D55E-4FE3-A9C1-0AA6B8029798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0703D9C1-D55E-4FE3-A9C1-0AA6B8029798}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {00D21262-2071-43FC-8EC0-4F4C83EC233A}
 		        SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
 	EndGlobalSection
 EndGlobal

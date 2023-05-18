@@ -1,4 +1,5 @@
-﻿namespace MauiMudBlazorSample;
+﻿
+namespace MauiMudBlazorSample;
 
 public partial class App : Application
 {
@@ -7,5 +8,8 @@ public partial class App : Application
 		InitializeComponent();
 
 		MainPage = new MainPage();
-	}
+
+        PlatformSpecificConfig.RunPlatformConfig();	
+
+    }
 }

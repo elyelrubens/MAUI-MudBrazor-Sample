@@ -1,0 +1,83 @@
+﻿@page "/mud-mask"
+@layout MainLayout
+@using System.Text;
+@using MudBlazor.Utilities;
+
+
+<MudContainer MaxWidth="MaxWidth.Medium">
+    <MudText Typo="Typo.h3">MudMask Tests</MudText>
+    <input class="mud-theme-primary overflow-hidden" @bind:event="oninput" @bind:get="CreditCardNumber" @bind:set="OnInput" />
+    <MudText Typo="Typo.subtitle1">@Value</MudText>
+</MudContainer>
+
+@code {
+    private string CreditCardNumber { get; set; }
+
+    private string Value { get; set; }
+    private string Difference { get; set; }
+
+    private void OnInput(string value)
+    {
+        CreditCardNumber = ApplyCreditCardMask(value);
+        Value = RemoveCreditCardMask(CreditCardNumber);
+    }
+
+    /// <summary>
+    /// Applies the credit card mask pattern "#### #### #### ####" to the given value.
+    /// The value should contain a maximum of 16 numeric characters.
+    /// Any other characters will be removed from the string.
+    /// </summary>
+    private string ApplyCreditCardMask(string value)
+    {
+        // Remove all non-numeric characters
+        var digitsOnly = new string(value.Where(char.IsDigit).ToArray());
+
+        // Ensure the final value has a maximum of 16 characters
+        var len = digitsOnly.Length;
+        if (len > 16)
+        {
+            digitsOnly = digitsOnly.Substring(0, 16);
+        }
+
+        // Apply the mask "#### #### #### ####"
+        var mask = "#### #### #### ####";
+        var result = new StringBuilder();
+        var index = 0;
+
+        foreach (var character in mask)
+        {
+            if (character == '#')
+            {
+                if (index < digitsOnly.Length)
+                {
+                    result.Append(digitsOnly[index]);
+                    index++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else
+            {
+                if (result.Length <= digitsOnly.Length && digitsOnly.Length > 5)
+                {
+                    result.Append(character);
+                }
+            }
+        }
+
+        return result.ToString();
+    }
+
+    /// <summary>
+    /// Removes the credit card mask from the given value.
+    /// </summary>
+    private string RemoveCreditCardMask(string value)
+    {
+        if (value == null) return "";
+        // Remove all non-numeric characters
+        var digitsOnly = new string(value.Where(char.IsDigit).ToArray());
+        return digitsOnly;
+    }
+}

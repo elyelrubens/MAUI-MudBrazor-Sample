@@ -1,0 +1,75 @@
+﻿@page "/credit-card-mask"
+@layout MainLayout
+
+@using System.Text;
+<h3>Credit Card Mask</h3>
+
+<input @bind:event="oninput" @bind:get="CreditCardNumber" @bind:set="OnInput" />
+
+<div>
+    <strong>value:</strong> <span id="typedvalue-result">@Value</span>
+</div>
+
+@code {
+    private string CreditCardNumber { get; set; }
+
+    private string Value { get; set; }
+    private string Difference { get; set; }
+
+    private void OnInput(string value)
+    {
+        CreditCardNumber = AplicarMascaraCartaoCredito(value);
+        Value = RemoverMascaraCartaoCredito(CreditCardNumber);
+    }
+
+    private string AplicarMascaraCartaoCredito(string valor)
+    {
+        // Remover todos os caracteres não numéricos
+        var apenasDigitos = new string(valor.Where(char.IsDigit).ToArray());
+
+        // Garantir que o valor final tenha no máximo 16 caracteres
+        var len = apenasDigitos.Length;
+        if (len > 16)
+        {
+            apenasDigitos = apenasDigitos.Substring(0,16);
+        }
+
+        // Aplicar a máscara "#### #### #### ####"
+        var mascara = "#### #### #### ####";
+        var resultado = new StringBuilder();
+        var index = 0;
+
+        foreach (var caractere in mascara)
+        {
+            if (caractere == '#')
+            {
+                if (index < apenasDigitos.Length)
+                {
+                    resultado.Append(apenasDigitos[index]);
+                    index++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else
+            {
+                if(resultado.Length <= apenasDigitos.Length && apenasDigitos.Length > 5)
+                {
+                    resultado.Append(caractere);
+                }
+            }
+        }
+
+        return resultado.ToString();
+    }
+
+    private string RemoverMascaraCartaoCredito(string valor)
+    {
+        if (valor == null) return "";
+        // Remover todos os caracteres não numéricos
+        var apenasDigitos = new string(valor.Where(char.IsDigit).ToArray());
+        return apenasDigitos;
+    }
+}
