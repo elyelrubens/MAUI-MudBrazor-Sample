@@ -5,12 +5,21 @@
 
 
 <MudContainer MaxWidth="MaxWidth.Medium">
-    <MudText Typo="Typo.h3">MudMask Tests</MudText>
+    
+    
+    <MudItem xs="12">
+        <MudText Typo="Typo.h3">MudMask (Android fail)</MudText>
+        <MudTextField Mask="@(new PatternMask("0000 0000 0000 0000"))" Label="Credit Card Number" 
+                      @bind-Value="creditCard"  Variant="@Variant.Text" Clearable />
+    </MudItem>
+
+    <MudText Typo="Typo.h3">MudMask Tests trying to solve</MudText>
     <input class="mud-theme-primary overflow-hidden" @bind:event="oninput" @bind:get="CreditCardNumber" @bind:set="OnInput" />
     <MudText Typo="Typo.subtitle1">@Value</MudText>
 </MudContainer>
 
 @code {
+    private string creditCard;
     private string CreditCardNumber { get; set; }
 
     private string Value { get; set; }
